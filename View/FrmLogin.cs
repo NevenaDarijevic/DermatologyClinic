@@ -1,0 +1,52 @@
+﻿using ControllerAL;
+using Domain;
+using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+using View.Controller;
+using View.Helpers;
+
+namespace View
+{
+    public partial class FrmLogin : Form
+    {
+        private LoginController loginController;
+        public FrmLogin()
+        {
+            InitializeComponent();
+        }
+
+        public FrmLogin(LoginController loginController)
+        {
+            InitializeComponent();
+            this.loginController = loginController;
+        }
+
+        private void btnLogin_Click(object sender, EventArgs e)
+        {
+            if (loginController.Connect())
+            {
+                loginController.Login(txtKorisnickoIme, txtSifra, this);
+            }
+          
+        }
+
+        private void FrmLogin_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            Environment.Exit(0);
+        }
+
+        private void FrmLogin_Load(object sender, EventArgs e)
+        {
+           // txtKorisnickoIme.Text = "daria";
+           //txtSifra.Text= "daria";
+           
+        }
+    }
+}
